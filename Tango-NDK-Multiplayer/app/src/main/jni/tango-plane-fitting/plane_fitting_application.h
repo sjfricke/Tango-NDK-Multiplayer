@@ -27,6 +27,9 @@
 
 #include "tango-plane-fitting/point_cloud_renderer.h"
 
+//chair data
+#include "chair.h"
+
 namespace tango_plane_fitting {
 
 /**
@@ -145,6 +148,7 @@ class PlaneFittingApplication {
   tango_gl::VideoOverlay* video_overlay_;
   PointCloudRenderer* point_cloud_renderer_;
   tango_gl::Cube* cube_;
+  tango_gl::Mesh* furniture_;
 
   // The dimensions of the render window.
   float screen_width_;

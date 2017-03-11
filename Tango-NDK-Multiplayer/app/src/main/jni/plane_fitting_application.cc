@@ -31,6 +31,7 @@ namespace {
 // The minimum Tango Core version required from this application.
 constexpr int kTangoCoreMinimumVersion = 9377;
 constexpr float kCubeScale = 0.05f;
+constexpr float furniture_scale = 0.1f;
 
 /**
  * This function will route callbacks to our application object via the context
@@ -267,6 +268,19 @@ void PlaneFittingApplication::OnSurfaceCreated() {
   cube_->SetScale(glm::vec3(kCubeScale, kCubeScale, kCubeScale));
   cube_->SetColor(0.7f, 0.7f, 0.7f);
 
+  furniture_ = new tango_gl::Mesh();
+  furniture_->SetShader(true);
+
+  std::vector<GLfloat> temp_vertices(
+      chair_vertices,
+      chair_vertices + sizeof(chair_vertices) / sizeof(GLfloat));
+  std::vector<GLfloat> temp_normals(
+      chair_normals, chair_normals + sizeof(chair_normals) / sizeof(GLfloat));
+  furniture_->SetVertices(temp_vertices, temp_normals);
+
+  furniture_->SetScale(glm::vec3(furniture_scale));
+  furniture_->SetColor(0.7f, 0.7f, 0.7f);
+
   is_gl_initialized_ = true;
 }
 
@@ -357,15 +371,18 @@ void PlaneFittingApplication::GLRender(
 
   glDisable(GL_BLEND);
 
-  cube_->Render(projection_matrix_ar_, color_camera_T_area_description);
+  //cube_->Render(projection_matrix_ar_, color_camera_T_area_description);
+  furniture_->Render(projection_matrix_ar_, color_camera_T_area_description);
 }
 
 void PlaneFittingApplication::DeleteResources() {
   delete video_overlay_;
   delete cube_;
+  delete furniture_;
   delete point_cloud_renderer_;
   video_overlay_ = nullptr;
   cube_ = nullptr;
+  furniture_ = nullptr;
   point_cloud_renderer_ = nullptr;
 }
 
@@ -479,6 +496,9 @@ void PlaneFittingApplication::OnTouchEvent(float x, float y) {
   cube_->SetRotation(rotation);
   cube_->SetPosition(glm::vec3(area_description_position) +
                      plane_normal * kCubeScale);
+  furniture_->SetRotation(rotation);
+  furniture_->SetPosition(glm::vec3(area_description_position) +
+                     plane_normal * furniture_scale);
 }
 
 glm::mat4 PlaneFittingApplication::GetAreaDescriptionTDepthTransform(
