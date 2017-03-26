@@ -99,6 +99,9 @@ class AugmentedRealityApp {
   // @JavaVM display_rotation: orientation of current display.
   void OnDeviceRotationChanged(int display_rotation);
 
+  // Do something cool
+  void magic();
+
  private:
   // Request the render function from Java layer.
   void RequestRender();

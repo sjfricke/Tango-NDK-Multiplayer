@@ -79,4 +79,7 @@ public class TangoJNINative {
    * Configuration changed callback, called when screen rotates.
    */
   public static native void onConfigurationChanged(int displayOrientation);
+
+  //What it do? Who knows
+  public static native void setMagic();
 }

@@ -82,6 +82,12 @@ Java_com_projecttango_examples_cpp_augmentedreality_TangoJNINative_onConfigurati
     JNIEnv*, jobject, int display_orientation) {
   app.OnDeviceRotationChanged(display_orientation);
 }
+JNIEXPORT void JNICALL
+Java_com_projecttango_examples_cpp_augmentedreality_TangoJNINative_setMagic(
+        JNIEnv*, jobject) {
+  app.magic();
+}
+
 
 #ifdef __cplusplus
 }

@@ -459,4 +459,9 @@ void AugmentedRealityApp::FormatTransformString() {
   transform_string_ = string_stream.str();
   string_stream.flush();
 }
+
+void magic() {
+
+}
+
 }  // namespace tango_augmented_reality

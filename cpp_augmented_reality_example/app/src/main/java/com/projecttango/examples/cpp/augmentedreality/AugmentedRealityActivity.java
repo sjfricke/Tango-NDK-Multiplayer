@@ -25,7 +25,9 @@ import android.hardware.Camera;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
 
 /**
@@ -110,6 +112,10 @@ public class AugmentedRealityActivity extends Activity {
   protected void onDestroy() {
     super.onDestroy();
     TangoJNINative.onDestroy();
+  }
+
+  public void setMagic(View view) {
+    TangoJNINative.setMagic();
   }
 
   @Override
