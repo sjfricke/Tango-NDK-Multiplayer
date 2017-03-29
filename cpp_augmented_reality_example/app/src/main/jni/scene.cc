@@ -51,6 +51,14 @@ void Scene::InitGLContent(AAssetManager* aasset_manager) {
   video_overlay_ = new tango_gl::VideoOverlay();
   camera_ = new tango_gl::Camera();
 
+//  teapot_mesh_ = tango_gl::meshes::MakeCubeMesh(10.0);
+//
+//  teapot_material_ = new tango_gl::Material();
+//  teapot_material_->SetShader(
+//        tango_gl::shaders::GetBasicVertexShader().c_str(),
+//        tango_gl::shaders::GetBasicFragmentShader().c_str());
+
+  teapot_transform_.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
   // Init earth mesh and material
   earth_mesh_ = tango_gl::meshes::MakeSphereMesh(20, 20, 1.0f);
   earth_material_ = new tango_gl::Material();
@@ -93,7 +101,11 @@ void Scene::DeleteResources() {
     delete moon_material_;
     moon_material_ = nullptr;
     delete moon_texture_;
-    moon_texture_ = nullptr;
+//    moon_texture_ = nullptr;
+//      delete teapot_mesh_;
+//      teapot_mesh_ = nullptr;
+//      delete teapot_material_;
+//      teapot_material_ = nullptr;
 
     is_content_initialized_ = false;
   }
@@ -134,8 +146,10 @@ void Scene::Render(const glm::mat4& cur_pose_transformation) {
   video_overlay_->Render(glm::mat4(1.0f), glm::mat4(1.0f));
   glEnable(GL_DEPTH_TEST);
 
-  tango_gl::Render(*earth_mesh_, *earth_material_, earth_transform_, *camera_);
-  tango_gl::Render(*moon_mesh_, *moon_material_, moon_transform_, *camera_);
+   tango_gl::Render(*earth_mesh_, *earth_material_, earth_transform_, *camera_);
+   tango_gl::Render(*moon_mesh_, *moon_material_, moon_transform_, *camera_);
+    //tango_gl::Render(*teapot_mesh_, *teapot_material_, teapot_transform_, *camera_);
+
 }
 
 void Scene::RotateEarthForTimestamp(double timestamp) {

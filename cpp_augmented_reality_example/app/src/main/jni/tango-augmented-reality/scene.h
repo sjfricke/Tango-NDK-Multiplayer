@@ -127,18 +127,22 @@ class Scene {
   // Meshes
   tango_gl::StaticMesh* earth_mesh_;
   tango_gl::StaticMesh* moon_mesh_;
+  tango_gl::StaticMesh* teapot_mesh_;
 
   // Textures
   tango_gl::Texture* earth_texture_;
   tango_gl::Texture* moon_texture_;
+  tango_gl::Texture* teapot_texture_;
 
   // Materials
   tango_gl::Material* earth_material_;
   tango_gl::Material* moon_material_;
+  tango_gl::Material* teapot_material_;
 
   // Transforms
   tango_gl::Transform earth_transform_;
   tango_gl::Transform moon_transform_;
+  tango_gl::Transform teapot_transform_;
 
   // Last pose timestamp received
   double earth_last_timestamp_;

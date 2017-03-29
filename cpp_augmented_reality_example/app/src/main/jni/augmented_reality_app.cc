@@ -460,7 +460,7 @@ void AugmentedRealityApp::FormatTransformString() {
   string_stream.flush();
 }
 
-void magic() {
+void AugmentedRealityApp::magic() {
 
 }
 
